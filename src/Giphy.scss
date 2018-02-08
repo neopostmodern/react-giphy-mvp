@@ -1,0 +1,23 @@
+.giphy__error {
+  background-color: darkred;
+  color: white;
+  padding: 1.5rem 2rem;
+  font-size: 5rem;
+}
+
+.giphy__suggestion {
+  font-weight: bold;
+  margin-bottom: 3rem;
+}
+
+.giphy__name, .giphy__user {
+  display: inline-block;
+  padding: 0.2em 0.3em;
+}
+
+.giphy__name {
+  background-color: aqua;
+}
+.giphy__user {
+  background-color: blueviolet;
+}
