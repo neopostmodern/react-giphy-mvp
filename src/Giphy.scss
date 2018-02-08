@@ -10,14 +10,33 @@
   margin-bottom: 3rem;
 }
 
-.giphy__name, .giphy__user {
+%colored-background {
   display: inline-block;
   padding: 0.2em 0.3em;
 }
 
 .giphy__name {
+  @extend %colored-background;
   background-color: aqua;
 }
 .giphy__user {
+  @extend %colored-background;
   background-color: blueviolet;
+}
+
+.giphy__image {
+  max-height: 30rem;
+  max-width: 30rem;
+}
+
+.giphy__reaction__expression {
+  @extend %colored-background;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+.giphy__reaction--positive__expression {
+  background-color: green;
+}
+.giphy__reaction--negative__expression {
+  background-color: red;
 }

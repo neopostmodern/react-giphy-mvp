@@ -17,13 +17,20 @@ class App extends Component {
     }
 
     this.handleText = this.handleText.bind(this);
+    this.handleRequestAnother = this.handleRequestAnother.bind(this);
   }
 
-  searchGiphy(text) {
+  componentWillUpdate(nextProps, nextState) {
+    if (this.state.text !== nextState.text) {
+      this.searchGiphy();
+    }
+  }
+
+  searchGiphy() {
     this.setState({
       loading: true
     });
-    fetch(`http://api.giphy.com/v1/gifs/translate?api_key=${GIPHY_API_KEY}&s=${text}`)
+    fetch(`http://api.giphy.com/v1/gifs/translate?api_key=${GIPHY_API_KEY}&s=${this.state.text}`)
       .then(response => response.json())
       .then(data => {
         this.setState({
@@ -41,7 +48,11 @@ class App extends Component {
   }
 
   handleText(text) {
-    this.searchGiphy(text);
+    this.setState({ text });
+  }
+
+  handleRequestAnother() {
+    this.searchGiphy();
   }
 
   render() {
@@ -51,7 +62,12 @@ class App extends Component {
         <Say onText={this.handleText} />
         {
           this.state.gif
-          ? <Giphy loading={this.state.loading} error={this.state.error} gif={this.state.gif}/>
+          ? <Giphy
+              loading={this.state.loading}
+              error={this.state.error}
+              gif={this.state.gif}
+              onRequestAnother={this.handleRequestAnother}
+            />
           : <div>To start, enter a search term above</div>
         }
       </div>

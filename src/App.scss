@@ -18,3 +18,13 @@ body {
   font-weight: bold;
   font-style: italic;
 }
+
+.button {
+  @extend %sans-serif-font;
+
+  background: none;
+
+  border: 0;
+  border-bottom: 2px solid;
+  cursor: pointer;
+}
