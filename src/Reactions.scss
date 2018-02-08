@@ -1,0 +1,18 @@
+@import "typography";
+
+.reaction__expression {
+  @extend %colored-background;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+.reaction--positive__expression {
+  background-color: green;
+}
+.reaction--negative__expression {
+  background-color: red;
+}
+
+.reaction__url {
+  @extend %colored-background;
+  background-color: lightgray;
+}

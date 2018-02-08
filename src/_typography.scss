@@ -1,9 +1,15 @@
 $SANS-SERIF: Helvetica, Arial, sans-serif;
 $FONT-SIZE: 2.5rem;
 $FONT-WEIGHT: bold;
+$SPACING: 0.2em;
 
 %sans-serif-font {
   font-family: $SANS-SERIF;
   font-size: $FONT-SIZE;
   font-weight: $FONT-WEIGHT;
+}
+
+%colored-background {
+  display: inline-block;
+  padding: $SPACING 0.3em;
 }

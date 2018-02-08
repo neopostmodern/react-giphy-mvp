@@ -5,6 +5,7 @@ import { GIPHY_API_KEY } from './config'
 import './App.css';
 import Say from './Say'
 import Giphy from './Giphy'
+import Reactions from './Reactions'
 
 class App extends Component {
   constructor() {
@@ -17,7 +18,7 @@ class App extends Component {
     }
 
     this.handleText = this.handleText.bind(this);
-    this.handleRequestAnother = this.handleRequestAnother.bind(this);
+    this.handleReloadRequest = this.handleReloadRequest.bind(this);
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -35,7 +36,11 @@ class App extends Component {
       .then(data => {
         this.setState({
           loading: false,
-          gif: data.data
+          gif: {
+            title: data.data.title,
+            username: data.data.username,
+            url: data.data.images.original.url
+          }
         })
       })
       .catch(error => {
@@ -51,7 +56,7 @@ class App extends Component {
     this.setState({ text });
   }
 
-  handleRequestAnother() {
+  handleReloadRequest() {
     this.searchGiphy();
   }
 
@@ -62,12 +67,18 @@ class App extends Component {
         <Say onText={this.handleText} />
         {
           this.state.gif
-          ? <Giphy
-              loading={this.state.loading}
-              error={this.state.error}
-              gif={this.state.gif}
-              onRequestAnother={this.handleRequestAnother}
-            />
+          ? <React.Fragment>
+              <Giphy
+                loading={this.state.loading}
+                error={this.state.error}
+                gif={this.state.gif}
+                onRetry={this.handleReloadRequest}
+              />
+              <Reactions
+                url={this.state.gif.url}
+                onRequestAnother={this.handleReloadRequest}
+              />
+            </React.Fragment>
           : <div>To start, enter a search term above</div>
         }
       </div>

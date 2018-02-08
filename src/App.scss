@@ -19,12 +19,15 @@ body {
   font-style: italic;
 }
 
+$BUTTON-LINE-WIDTH: 0.08em;
 .button {
   @extend %sans-serif-font;
 
   background: none;
 
+  padding: $SPACING - $BUTTON-LINE-WIDTH 0;
   border: 0;
-  border-bottom: 2px solid;
+  border-bottom: $BUTTON-LINE-WIDTH solid;
+
   cursor: pointer;
 }
