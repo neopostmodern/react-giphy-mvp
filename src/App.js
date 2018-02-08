@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { GIPHY_API_KEY } from './config'
 
 import './App.css';
+import Say from './Say'
 import Giphy from './Giphy'
 
 class App extends Component {
@@ -14,13 +15,15 @@ class App extends Component {
       gif: null,
       loading: false
     }
+
+    this.handleText = this.handleText.bind(this);
   }
 
-  componentDidMount() {
+  searchGiphy(text) {
     this.setState({
       loading: true
     });
-    fetch(`http://api.giphy.com/v1/gifs/translate?api_key=${GIPHY_API_KEY}&s=hello`)
+    fetch(`http://api.giphy.com/v1/gifs/translate?api_key=${GIPHY_API_KEY}&s=${text}`)
       .then(response => response.json())
       .then(data => {
         this.setState({
@@ -37,14 +40,19 @@ class App extends Component {
       })
   }
 
+  handleText(text) {
+    this.searchGiphy(text);
+  }
+
   render() {
     return (
       <div className="App">
         <h1 className="title">Talk like GIPHY?</h1>
+        <Say onText={this.handleText} />
         {
           this.state.gif
           ? <Giphy loading={this.state.loading} error={this.state.error} gif={this.state.gif}/>
-          : <div>No GIPHY</div>
+          : <div>To start, enter a search term above</div>
         }
       </div>
     );

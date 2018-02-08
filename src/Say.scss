@@ -1,0 +1,17 @@
+@import "_typography.scss";
+
+.say {
+  margin-bottom: 2rem;
+}
+
+.say__form {
+  display: inline;
+}
+
+.say__input {
+  @extend %sans-serif-font;
+
+  border: none;
+  border-bottom: 2px solid black;
+  padding: 0.1em 0.3em;
+}

@@ -1,0 +1,9 @@
+$SANS-SERIF: Helvetica, Arial, sans-serif;
+$FONT-SIZE: 2.5rem;
+$FONT-WEIGHT: bold;
+
+%sans-serif-font {
+  font-family: $SANS-SERIF;
+  font-size: $FONT-SIZE;
+  font-weight: $FONT-WEIGHT;
+}
